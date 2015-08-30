@@ -1,0 +1,56 @@
+    <div class="container">
+        <div class="row" ng-controller="listCtrl as listCtrl">
+            <section class="booksList col-lg-12">
+                <h1 class="text-info">Application "StuzoBooks"</h1>
+                <h3 class="text-muted">Books list</h3>
+                <div class="input-group search">
+                    <span class="input-group-addon glyphicon glyphicon-search" aria-hidden="true"></span>
+                    <input type="search"  class="form-control" ng-model="booksFilter" placeholder="filter books list..." aria-label="filter books" />
+                </div>
+                <section class="bookWrapper col-lg-3" ng-repeat="book in listCtrl.books | orderBy:'title' | filter:booksFilter" ng-controller="bookCtrl as bookCtrl">
+                    <div class="book" ng-if="!bookCtrl.isEditing">
+                        <h3>{{book.title}}</h3>
+                        <p><span class="text-info">Author:</span> {{book.author}}</p>
+                        <p><span class="text-info">Description:</span> {{book.description}}</p>
+                        <p><span class="text-info">Year of publishing:</span> {{book.year}}</p>
+                        <p><a class="text-warning" href="/book/{{book.id}}" title="Read more about {{book.title}}">Read more...</a></p>
+                        <p>
+                            <button type="button" class="btn btn-warning" ng-click="bookCtrl.editBook(book)" popover="Edit book" popover-trigger="mouseenter">
+                                <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                            </button>
+                            <button type="button" class="btn btn-danger" ng-click="bookCtrl.askRemoving(book)" popover="Remove book" popover-trigger="mouseenter">
+                                <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+                            </button>
+                        </p>                        
+                    </div>
+                    <div class="book" ng-if="bookCtrl.isEditing">
+                        <h3>{{book.title}}</h3>
+                        <p>
+                            <span class="text-info">Title</span>
+                            <input type="text" class="form-control" ng-model='bookCtrl.editingBook.title' required>
+                        </p>
+                        <p>
+                            <span class="text-info">Author:</span>
+                            <input type="text" class="form-control" ng-model='bookCtrl.editingBook.author' required>
+                        </p>
+                        <p>
+                            <span class="text-info">Description:</span>
+                            <input type="text" class="form-control" ng-model='bookCtrl.editingBook.description' required>
+                        </p>
+                        <p>
+                            <span class="text-info">Year of publishing:</span>
+                            <input type="number" class="form-control" ng-model='bookCtrl.editingBook.year' min="1950" required>
+                        </p>                        
+                        <p>
+                            <button type="button" class="btn btn-success" ng-click="bookCtrl.updateBook()" popover="Save changes" popover-trigger="mouseenter">
+                                <span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+                            </button>
+                            <button type="button" class="btn btn-info" ng-click="bookCtrl.cancelUpdating()" popover="Cancel editing" popover-trigger="mouseenter">
+                                <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
+                            </button>                            
+                        </p> 
+                    </div>
+                </section>
+            </section>
+        </div>
+    </div>

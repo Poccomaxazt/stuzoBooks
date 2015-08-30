@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="bookApp">
+<head>
+  <base href="/">
+  <title>Stuzo Book List</title>
+  <link href="dist/css/style.min.css" rel="stylesheet"/>
+</head>
+
+<body>
+    <nav class="navbar navbar-default">
+        <div class="container">
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li><a href="/">Books list</a></li>
+                    <li><a href="/addBook">Add new book</a></li>
+                    <li><a href="/contacts">Contact information</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <ng-view></ng-view>
+    <hr>
+    <footer>
+        <div class="container">
+            <p>&copy; 2015 | Ivan Tsymbal special for Stuzo company.</p>
+        </div>
+    </footer>
+
+    <script type="text/javascript" src="dist/js/script.min.js"></script>
+    <script type="text/ng-template" id="modalContent.html">
+        <div class="modal-header">
+            <h3 class="modal-title">Attention</h3>
+        </div>
+        <div class="modal-body">
+            {{modalCtrl.message}}
+        </div>
+        <div class="modal-footer" ng-if="modalCtrl.type=='addBook'">
+            <button class="btn btn-info" type="button" ng-click="modalCtrl.cancel()">Ok</button>
+        </div>
+        <div class="modal-footer" ng-if="modalCtrl.type=='removeBook'">
+            <button class="btn btn-info" type="button" ng-click="modalCtrl.ok()">OK</button>
+            <button class="btn btn-warning" type="button" ng-click="modalCtrl.cancel()">Cancel</button>
+        </div>
+    </script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+.booksList table tr th,
+.booksList table tr td {
+	vertical-align: middle;
+}
+
+.search {
+	margin-bottom: 15px;
+}
+
+.bookWrapper:nth-of-type(4n+1) {
+	clear: both;
+}
+
+.preview {
+	background: #f0ad4e;
+	height: 300px; 
+}
